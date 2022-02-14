@@ -1,0 +1,39 @@
+//MOVIE DETAILES TABLE//
+
+CREATE TABLE movie_details (
+id bigint(11) NOT NULL AUTO_INCREMENT,
+name varchar(250) NOT NULL,
+description varchar(500) NOT NULL,
+duration_minutes int(4) NULL,
+origin varchar(30) NOT NULL,
+imdb_rating decimal(10,2) NOT NULL,
+release_year int(4) NOT NULL,
+genre varchar(200) NOT NULL,
+link varchar(250) NOT NULL,
+director varchar(255) NOT NULL,
+actors varchar(500) NOT NULL, 
+image_url varchar(250) NOT NULL,
+`is_active` tinyint(1) DEFAULT NULL,
+`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+
+
+
+//Costumer Table//
+
+CREATE TABLE costumer_service (
+id bigint(11) NOT NULL AUTO_INCREMENT,
+email varchar(250) NOT NULL,
+name varchar(250) NOT NULL,
+password varchar(50) NOT NULL,
+`is_active` tinyint(1) DEFAULT NULL,
+roll varchar(250) NOT NULL,
+`costumer` enum('Male','Female') DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+
+
+
+
