@@ -17,22 +17,21 @@ image_url varchar(250) NOT NULL,
 `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 
 //Costumer Table//
 
-CREATE TABLE costumer_service (
+CREATE TABLE users_login (
 id bigint(11) NOT NULL AUTO_INCREMENT,
 email varchar(250) NOT NULL,
 name varchar(250) NOT NULL,
 password varchar(50) NOT NULL,
 `is_active` tinyint(1) DEFAULT NULL,
-roll varchar(250) NOT NULL,
-`costumer` enum('Male','Female') DEFAULT NULL,
+roll enum('admin','costumer') NOT NULL,
 PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 

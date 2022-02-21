@@ -13,6 +13,7 @@
   $genre = "";
   $link = "";
   $language ="";
+  $category_id ="";
   $director ="";
   $actors ="";
   $image_url = "";
@@ -34,6 +35,7 @@
     $genre = $row['genre'];
     $link = $row['link'];
     $language = $row['language'];
+    $category_id = $row['category_id'];
     $director = $row['director'];
     $actors = $row['actors'];
     $image_url = $row['image_url'];
@@ -73,6 +75,7 @@
     $genre = $_POST['genre'];
     $link = $_POST['link'];
     $language = $_POST['language'];
+    $category_id = $_POST['category_id'];
     $director = $_POST['director'];
     $actors = $_POST['actors'];
     if($_FILES["imageUpload"]["name"]){
@@ -84,7 +87,9 @@
     $is_active = (int)$_POST['is_active'];
   
 
-    $sql="UPDATE `movie_details` set id=$id, name='$name', title='$title', description='$description', duration_minutes='$duration_minutes', origin='$origin', imdb_rating='$imdb_rating', release_year='$release_year', genre='$genre', link='$link', language='$language', director='$director', actors='$actors', image_url='$image_url', is_active='$is_active' where id=$id";
+    $sql="UPDATE `movie_details` set id=$id, name='$name', title='$title', description='$description',
+     duration_minutes='$duration_minutes', origin='$origin', imdb_rating='$imdb_rating',
+      release_year='$release_year', genre='$genre', link='$link', language='$language', category_id='$category_id', director='$director', actors='$actors', image_url='$image_url', is_active='$is_active' where id=$id";
 
     $result=mysqli_query($con,$sql);
     if($result){
@@ -122,14 +127,14 @@
     $genre = $_POST['genre'];
     $link = $_POST['link'];
     $language = $_POST['language'];
+    $category_id = $_POST['category_id'];
     $director = $_POST['director'];
     $actors = $_POST['actors'];
     $image_url = substr($target_file, 3);
     $is_active = (int)$_POST['is_active'];
-    $language = $_POST['language'];
   
 
-    $sql="insert into `movie_details` (name,title,description,duration_minutes,origin,imdb_rating,release_year,genre,link,language,director,actors,image_url,is_active) values('$name','$title','$description',$duration_minutes,'$origin',$imdb_rating,$release_year,'$genre','$link','$language','$director','$actors','$image_url',$is_active)";
+    $sql="insert into `movie_details` (name,title,description,duration_minutes,origin,imdb_rating,release_year,genre,link,language,category_id,director,actors,image_url,is_active) values('$name','$title','$description',$duration_minutes,'$origin',$imdb_rating,$release_year,'$genre','$link','$language','$category_id','$director','$actors','$image_url',$is_active)";
  
 
     if ($con->query($sql) === TRUE) {
@@ -143,81 +148,100 @@
     }
 
 
-  }  
+  } 
+  
+    $sql="SELECT * FROM `categories` ORDER BY id DESC";
+    $result=mysqli_query($con,$sql);
+    $crows=mysqli_fetch_all ($result, MYSQLI_ASSOC);
 
 ?>
 
 
     <div class="container my-5">
-      <a href="index.php" class="text-light"><button class="btn btn-primary my-5">Back Home</button></a>
-      <form method="post" enctype="multipart/form-data">
-        <div class="form-group">
+      <a href="index.php" class="text-light"><button class="btn btn-primary my-3">Back Home</button></a>
+      <form method="post" enctype="multipart/form-data" class="form-style">
+        <div class="form-group col-md-8">
           <label>Name</label>
           <input type="text" class="form-control" placeholder="Enter your name" name="name" autocomplete="off" value="<?php echo $name; ?>">
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Title</label>
           <input type="text" class="form-control" placeholder="Enter your title" name="title" autocomplete="off" value="<?php echo $title; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Description</label>
           <input type="text" class="form-control" placeholder="Enter your description" name="description" autocomplete="off" value="<?php echo $description; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Duration In Minutes</label>
           <input type="text" class="form-control" placeholder="Enter your duration" name="duration_minutes" autocomplete="off" value="<?php echo $duration_minutes; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Origin</label>
           <input type="text" class="form-control" placeholder="Enter your origin" name="origin" autocomplete="off" value="<?php echo $origin; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>IMDB Ratting</label>
           <input type="text" class="form-control" placeholder="Enter your imdb_rating" name="imdb_rating" autocomplete="off" value="<?php echo $imdb_rating; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Release Year</label>
           <input type="text" class="form-control" placeholder="Enter your release_year" name="release_year" autocomplete="off" value="<?php echo $release_year; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Genre</label>
           <input type="text" class="form-control" placeholder="Enter your genre" name="genre" autocomplete="off" value="<?php echo $genre; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Link</label>
           <input type="text" class="form-control" placeholder="Enter your link" name="link" autocomplete="off" value="<?php echo $link; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Language</label>
           <input type="text" class="form-control" placeholder="Enter your Movie Language" name="language" autocomplete="off" value="<?php echo $language; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Director</label>
           <input type="text" class="form-control" placeholder="Enter your Movie Director" name="director" autocomplete="off" value="<?php echo $director; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Actor's</label>
           <input type="text" class="form-control" placeholder="Enter your Movie Actor's" name="actors" autocomplete="off" value="<?php echo $actors; ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-8">
           <label>Image</label>
           <input type="file" name="imageUpload" id="imageUpload">
         </div>
+        
+        <div class="form-group col-md-8">
+            <label>Category</label>
+              <select name="category_id">
+                <option value=""> --Select-- </option>
 
-        <div class="form-group">
+                <?php foreach ($crows as $row) {
+                                $id=$row['id'];
+                                $category = $row['category']; ?>
+                <option value="<?php echo $id ?>"> <?php echo $category ?> </option>
+                <?php } ?> 
+
+              
+              </select>
+            </div><br>
+
+        <div class="form-group col-md-8">
           <label>Is Active</label>
           <input type='radio' id='radio_1' class="form-control" name="is_active"  autocomplete="off" value="<?php echo $is_active; ?>" <?php if($is_active == 1) echo 'checked' ?>> 
           <script type="text/javascript">
@@ -238,7 +262,7 @@
             });
           </script>
 
-        <button type="submit" class="btn btn-primary" name="<?php if(!isset($_GET['updateid'])) echo 'submit'; else echo 'update'; ?>">Submit</button>
+        <button type="submit" class="btn btn-primary submit-button" name="<?php if(!isset($_GET['updateid'])) echo 'submit'; else echo 'update'; ?>">Submit</button>
       </form>
 
     </div>

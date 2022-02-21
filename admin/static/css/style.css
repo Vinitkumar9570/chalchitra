@@ -1,4 +1,48 @@
 
-		.outer-table{
-			overflow-y: auto;
-		}
+.outer-table{
+	overflow-y: auto;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label{
+    display: block;
+    text-align: center;
+}
+
+select{
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.button{
+    width: 525px;
+}
+
+.logout{
+    box-shadow: none;
+    border: none;
+    background-color: rgba(59, 60, 59, 0.89);
+    color: white !important;
+    padding: 8px 12px;
+    display: block;
+}
+
+.form-style{
+    border: 1px solid darkred;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 0.1px;
+    padding: 10px;
+}
+
+.submit-button{
+    width: 100%;
+    margin-top: 15px;
+}

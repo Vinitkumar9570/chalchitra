@@ -6,13 +6,13 @@
 	<title>crud operation</title>
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="plugins/bootstrap/bootstrap.bundle.min.js">
-	<link rel="stylesheet" type="text/css" href="plugins/DataTables/datatables.min.css"/>
+	<link rel="stylesheet" href="static/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="static/bootstrap/bootstrap.bundle.min.js">
+	<link rel="stylesheet" type="text/css" href="static/DataTables/datatables.min.css"/>
 
 	<!-- Java Script -->
-	<script type="text/javascript" src="plugins/script/jquery/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript" src="plugins/DataTables/datatables.min.js"></script>
+	<script type="text/javascript" src="static/script/jquery/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="static/DataTables/datatables.min.js"></script>
 
 	<link rel="stylesheet" href="static/css/style.css">
 </head>
@@ -20,6 +20,17 @@
 	include 'common_php.php'; 
 		
 	include 'connect.php';
+	if(!isset($page_name)){
+
+		if(isset($_SESSION)){
+			if(!isset($_SESSION['user_id'])){
+				header('location:login.php');
+			}
+		}else{
+			header('location:login.php');
+		}
+	}
 ?>
+<?php require 'partials/nav.php' ?>
 <body>
 	
