@@ -832,6 +832,13 @@ blockquote {
 /* my css */
 
 
+.logo-size{
+  height: 55px;
+  width: 300px;
+  max-width: 65%;
+}
+
+
 /*Slide Image*/
 
 .page-container{

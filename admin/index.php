@@ -11,6 +11,7 @@
 					      	<th scope="col">Image</th>
 					      	<th scope="col">Name</th>
 					      	<th scope="col">Title</th>
+					      	<th scope="col">Category</th>
 							<th scope="col">Description</th>
 							<th scope="col">Duration </th>
 							<th scope="col">Origin</th>
@@ -29,10 +30,14 @@
 
 						<?php  
 
-							$sql="SELECT * FROM `movie_details` ORDER BY created_at DESC";
+							// $sql="SELECT * FROM `movie_details` ORDER BY created_at DESC";
+							$sql="SELECT m.id,m.image_url,m.name,m.title,m.description,m.duration_minutes,m.origin,m.imdb_rating,m.release_year,m.genre,m.link,m.language,m.director,m.actors,m.is_active,
+							c.category
+							FROM movie_details as m
+							LEFT OUTER Join categories as c on (m.category_id = c.id)";
 							$result=mysqli_query($con,$sql);
 							$rows=mysqli_fetch_all ($result, MYSQLI_ASSOC);
-
+    
 							
 							$i = 1;
 							if($result){
@@ -41,6 +46,7 @@
 									$image_url = $row['image_url'];
 									$name=$row['name'];
 									$title = $row['title'];
+									$category = $row['category'];
 									$description = $row['description'];
 									$duration_minutes = $row['duration_minutes'];
 									$origin = $row['origin'];
@@ -62,6 +68,7 @@
 												</td>
 											    <td>'.$name.'</td>
 											    <td>'.$title.'</td>
+											    <td>'.$category.'</td>
 											    <td>'.$description.'</td>
 											    <td>'.$duration_minutes.'</td>
 											    <td>'.$origin.'</td>
