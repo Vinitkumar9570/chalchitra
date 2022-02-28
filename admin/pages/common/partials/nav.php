@@ -18,6 +18,12 @@
         </li>
         <?php } ?>
 
+        <?php  if(isset($_SESSION['is_logged_in'])){ ?>
+        <li class="nav-item">
+          <a class="nav-link" href="./banners.php">Banners</a>
+        </li>
+        <?php } ?>
+
 
         <?php  if(!isset($_SESSION['is_logged_in'])){ ?>
         <li class="nav-item" >
@@ -32,7 +38,7 @@
         </li>
         <?php } ?>
 
-
+        
         <?php  if(isset($_SESSION['is_logged_in'])){ ?>
         <li class="nav-item">
           <form action="login.php" method="post">
@@ -41,6 +47,10 @@
         </li>
 
         <?php } ?>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo getenv('BASE_URL'); ?>" target="_blank">Chalchitra Home</a>
+        </li>
 
 
       </ul>

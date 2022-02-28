@@ -1,21 +1,13 @@
 <!-- header-box -->
     <?php 
       $movies = getMovies($db);
-
-      echo "<pre>" ;print_r($movies);echo "</pre>" ;
     ?>
     <div class="outter-box page-container">
       <div class="header-box">
         <span class="pull-left">
-          Yomovies-Copy
+          Chalchitra
           <i class="fa fa-chevron-right right-sign" aria-hidden="true"></i>
-        </span>
-        <a href="#" class="right-text-style pull-right">view more
-          <i class="fa fa-angle-double-right double-right" aria-hidden="true"></i>
-        </a>
-        <ul class="featured-box">
-         <li href="#" class="featured-style">Featured</li>
-        </ul>
+        
       </div>
 
       <!-- Movie List-->

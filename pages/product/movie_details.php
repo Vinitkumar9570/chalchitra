@@ -1,25 +1,5 @@
 <!-- MOvie Details -->
-	<?php 
-
-		$id=$_GET['id'];
-	    $sql="SELECT * FROM `movie_details` where id=$id";
-	    $result=mysqli_query($db,$sql);
-	    $row=mysqli_fetch_assoc($result);
-	    $name = $row['name'];
-	    $title = $row['title'];
-	    $description = $row['description'];
-	    $duration_minutes = (int)$row['duration_minutes'];
-	    $origin = $row['origin'];
-	    $imdb_rating = (float)$row['imdb_rating'];
-	    $release_year = $row['release_year'];
-	    $genre = $row['genre'];
-	    $link = $row['link'];
-	    $language = $row['language'];
-	    $director = $row['director'];
-	    $actors = $row['actors'];
-	    $image_url = $row['image_url'];
-	    $is_active = (int)$row['is_active'];
-	 ?>
+	
 	<div class="movie-contentes pp-page-container">
 		<div class="movie-whte-space"></div>
 		<div class="movie-image-container">

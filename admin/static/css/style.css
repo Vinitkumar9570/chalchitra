@@ -42,7 +42,20 @@ select{
     padding: 10px;
 }
 
-.submit-button{
+/* Banners table CSS */
+
+.b-title{
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: mediumvioletred;
+}
+
+.b-button{
+    width: 48%;
+    text-align: center;
+}
+
+.b-buttons{
     width: 100%;
-    margin-top: 15px;
 }

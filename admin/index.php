@@ -9,6 +9,7 @@
 					      	<th scope="col">SI no</th>
 					      	<th scope="col">ID</th>
 					      	<th scope="col">Image</th>
+					      	<th scope="col">Banner</th>
 					      	<th scope="col">Name</th>
 					      	<th scope="col">Title</th>
 					      	<th scope="col">Category</th>
@@ -30,11 +31,11 @@
 
 						<?php  
 
-							// $sql="SELECT * FROM `movie_details` ORDER BY created_at DESC";
-							$sql="SELECT m.id,m.image_url,m.name,m.title,m.description,m.duration_minutes,m.origin,m.imdb_rating,m.release_year,m.genre,m.link,m.language,m.director,m.actors,m.is_active,
+							
+							$sql="SELECT m.id,m.image_url,m.banner_url,m.name,m.title,m.description,m.duration_minutes,m.origin,m.imdb_rating,m.release_year,m.genre,m.link,m.language,m.director,m.actors,m.is_active,
 							c.category
 							FROM movie_details as m
-							LEFT OUTER Join categories as c on (m.category_id = c.id)";
+							LEFT OUTER Join categories as c on (m.category_id = c.id) ORDER BY created_at DESC";
 							$result=mysqli_query($con,$sql);
 							$rows=mysqli_fetch_all ($result, MYSQLI_ASSOC);
     
@@ -44,6 +45,7 @@
 								foreach ($rows as $row) {
 									$id=$row['id'];
 									$image_url = $row['image_url'];
+									$banner_url = $row['banner_url'];
 									$name=$row['name'];
 									$title = $row['title'];
 									$category = $row['category'];
@@ -65,6 +67,9 @@
 											    <th scope="row">'.$id.'</th>
 											    <td>
 											    	<img src="../'.$image_url.'" alt="'.$image_url.'" height="150px">
+												</td>
+												<td>
+											    	<img src="../'.$banner_url.'" alt="'.$banner_url.'" height="auto" width="250px">
 												</td>
 											    <td>'.$name.'</td>
 											    <td>'.$title.'</td>

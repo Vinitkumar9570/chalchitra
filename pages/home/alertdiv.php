@@ -3,10 +3,10 @@
     <div class="page-container alert">
       <span>
         <i class="fa fa-bullseye blink" aria-hidden="true"></i>
-        <a href="#" class="alert-a">Please Use Yomovies-Copy new domain Yomovies-Copy</a>
+        <a href="./index.php" class="alert-a">Chalchitra</a>
 
         <i class="fa fa-bullseye blink" aria-hidden="true"></i>
-        <a href="#" class="alert-a">18+ Entry</a>
+        <a href="#" class="alert-a"></a>
 
         <i class="fa fa-bullseye blink" aria-hidden="true"></i>
         <a href="#" class="alert-a">Join our Telegram</a>

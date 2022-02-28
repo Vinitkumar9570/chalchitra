@@ -17,6 +17,7 @@
   $director ="";
   $actors ="";
   $image_url = "";
+  $banner_url = "";
   $is_active = "";
 
   
@@ -39,6 +40,7 @@
     $director = $row['director'];
     $actors = $row['actors'];
     $image_url = $row['image_url'];
+    $banner_url = $row['banner_url'];
     $is_active = (int)$row['is_active'];
 
   }
@@ -46,8 +48,12 @@
 
 
   if (isset($_POST['update'])) {
-    $target_dir = getenv('FILE_URL');
-    print_r($_FILES);
+    // if($banner_url){
+    //   $target_dir = "../uploads/";
+    // }else{
+    //   $target_dir = getenv('FILE_URL');
+    // }
+    $target_dir = "../uploads/";
     if($_FILES["imageUpload"]["name"]){
       $target_file = $target_dir . basename(date("Ymdhs",time()).$_FILES["imageUpload"]["name"]);
       $uploadOk = 1;
@@ -63,7 +69,23 @@
           exit();
       }
     }
-    
+    // banner upload
+    $banner_target_dir = "../uploads/banners/";
+    if($_FILES["bannerUpload"]["name"]){
+      $banner_target_file = $target_dir.'banners/' . basename(date("Ymdhs",time()).$_FILES["bannerUpload"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = pathinfo($banner_target_file,PATHINFO_EXTENSION);
+
+      if($banner_url){
+        $banner_target_file = '../'.$banner_url;
+      }
+      if (move_uploaded_file($_FILES["bannerUpload"]["tmp_name"], $banner_target_file)) {
+          echo "The file ". basename( $_FILES["bannerUpload"]["name"]). " has been uploaded.";
+      } else {
+          echo "Sorry, there was an error uploading your file.";
+          exit();
+      }
+    }
 
     $name = $_POST['name'];
     $title = $_POST['title'];
@@ -83,13 +105,20 @@
     }else{
       $image_url = $image_url;
     }
+
+    if($_FILES["bannerUpload"]["name"]){
+      $banner_url = substr($banner_target_file, 3);
+    }else{
+      $banner_url = $banner_url;
+    }
     
     $is_active = (int)$_POST['is_active'];
   
 
     $sql="UPDATE `movie_details` set id=$id, name='$name', title='$title', description='$description',
      duration_minutes='$duration_minutes', origin='$origin', imdb_rating='$imdb_rating',
-      release_year='$release_year', genre='$genre', link='$link', language='$language', category_id='$category_id', director='$director', actors='$actors', image_url='$image_url', is_active='$is_active' where id=$id";
+      release_year='$release_year', genre='$genre', link='$link', language='$language', category_id='$category_id', 
+      director='$director', actors='$actors', image_url='$image_url',banner_url='$banner_url', is_active='$is_active' where id=$id";
 
     $result=mysqli_query($con,$sql);
     if($result){
@@ -104,13 +133,25 @@
   if (isset($_POST['submit'])) {
 
     $target_dir = "../uploads/";
-    print_r($_FILES);
     $target_file = $target_dir . basename(date("Ymdhs",time()).$_FILES["imageUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
     if (move_uploaded_file($_FILES["imageUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["imageUpload"]["name"]). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+        exit();
+    }
+    // banner upload
+    $banner_target_dir = "../uploads/banners/";
+    print_r($_FILES);
+    $banner_target_dir = $banner_target_dir . basename(date("Ymdhs",time()).$_FILES["bannerUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = pathinfo($banner_target_dir,PATHINFO_EXTENSION);
+
+    if (move_uploaded_file($_FILES["bannerUpload"]["tmp_name"], $banner_target_dir)) {
+        echo "The file ". basename( $_FILES["bannerUpload"]["name"]). " has been uploaded.";
     } else {
         echo "Sorry, there was an error uploading your file.";
         exit();
@@ -131,10 +172,11 @@
     $director = $_POST['director'];
     $actors = $_POST['actors'];
     $image_url = substr($target_file, 3);
+    $banner_url = substr($banner_target_dir, 3);
     $is_active = (int)$_POST['is_active'];
   
 
-    $sql="insert into `movie_details` (name,title,description,duration_minutes,origin,imdb_rating,release_year,genre,link,language,category_id,director,actors,image_url,is_active) values('$name','$title','$description',$duration_minutes,'$origin',$imdb_rating,$release_year,'$genre','$link','$language','$category_id','$director','$actors','$image_url',$is_active)";
+    $sql="insert into `movie_details` (name,title,description,duration_minutes,origin,imdb_rating,release_year,genre,link,language,category_id,director,actors,image_url,banner_url,is_active) values('$name','$title','$description',$duration_minutes,'$origin',$imdb_rating,$release_year,'$genre','$link','$language','$category_id','$director','$actors','$image_url','$banner_url',$is_active)";
  
 
     if ($con->query($sql) === TRUE) {
@@ -224,7 +266,22 @@
         <div class="form-group col-md-8">
           <label>Image</label>
           <input type="file" name="imageUpload" id="imageUpload">
+          
+          <?php if ($image_url != "") { ?>
+             <img src="../<?php echo $image_url ?>" alt="'.$image_url.'" height="150px">;
+          <?php } ?>
+
         </div>
+
+        <div class="form-group col-md-8">
+          <label>Banner</label>
+          <input type="file" name="bannerUpload" id="bannerUpload">
+          <?php if ($image_url != "") { ?>
+            <img src="../<?php echo $banner_url ?>" alt="'.$banner_url.'" height="auto" width="250px">
+          <?php } ?>
+          
+        </div>
+        
         
         <div class="form-group col-md-8">
             <label>Category</label>
@@ -234,7 +291,7 @@
                 <?php foreach ($crows as $row) {
                                 $id=$row['id'];
                                 $category = $row['category']; ?>
-                <option value="<?php echo $id ?>"> <?php echo $category ?> </option>
+                <option value="<?php echo $id ?>" <?php if($id == $category_id) echo 'selected'; ?>> <?php echo $category ?> </option>
                 <?php } ?> 
 
               
@@ -261,8 +318,9 @@
 
             });
           </script>
+        </div>
 
-        <button type="submit" class="btn btn-primary submit-button" name="<?php if(!isset($_GET['updateid'])) echo 'submit'; else echo 'update'; ?>">Submit</button>
+        <button type="submit" class="btn btn-primary col-md-8" name="<?php if(!isset($_GET['updateid'])) echo 'submit'; else echo 'update'; ?>">Submit</button>
       </form>
 
     </div>

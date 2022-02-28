@@ -1,9 +1,19 @@
+	<?php 
+
+		$id=$_GET['id'];
+	    $sql="SELECT * FROM `movie_details` where id=$id";
+	    $result=mysqli_query($db,$sql);
+	    $row=mysqli_fetch_assoc($result);
+	    $name = $row['name'];
+	    
+	?>
+
 <!-- Movie Info -->
 
 	<div class="pp-page-container info">
-		<a href="#">Home</a>
+		<a href="./index.php">Home</a>
 		/&nbsp
-		<a href="#">Movies</a>
+		<a href="./index.php">Movies</a>
 		/&nbsp
-		<a>The Lost Daughter (2021) Hindi Dubbed</a>		
+		<a><?php echo $name; ?></a>		
 	</div>
