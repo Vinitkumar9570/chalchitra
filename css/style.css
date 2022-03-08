@@ -256,7 +256,7 @@ select:focus {
 }
 
 a:hover, a.text-dark:hover {
-  color: #ff6f00 !important;
+  color:  #865f6b !important;
 }
 
 .slick-slide {
@@ -318,7 +318,7 @@ a:hover, a.text-dark:hover {
 }
 
 .bg-secondary {
-  background: #fdefe6 !important;
+  background: #f5c3d2 !important;
 }
 
 .text-primary {
@@ -569,7 +569,7 @@ textarea.form-control {
 
 .pagination .page-item .page-link {
   font-family: "hanskendrick";
-  font-size: 30px;
+  font-size: 15px;
   border: 0;
   color: #585757;
 }
@@ -585,9 +585,9 @@ textarea.form-control {
   background-color: transparent;
 }
 
-.pagination .page-item:first-child .page-link, .pagination .page-item:last-child .page-link {
+/* .pagination .page-item:first-child .page-link, .pagination .page-item:last-child .page-link {
   font-size: 16px;
-}
+} */
 
 .pagination .page-item.active .page-link {
   color: #000000;
@@ -595,7 +595,12 @@ textarea.form-control {
   background: transparent;
 }
 
-.instagram-post {
+.page-link.active{
+  font-size: 30px !important;
+  font-weight: bold !important;
+}
+
+/* .instagram-post {
   position: relative;
 }
 
@@ -641,10 +646,10 @@ textarea.form-control {
 .instagram-post:hover ul {
   visibility: visible;
   opacity: 1;
-}
+} */
 
 /* homepage 2 */
-.hero-section {
+/* .hero-section {
   padding: 70px 0 0;
   background-image: linear-gradient(#fff 45%, #fdefe6 0);
 }
@@ -826,7 +831,7 @@ blockquote {
 
 .tag-list li a:hover {
   color: #ff6f00;
-}
+} */
 
 /*# sourceMappingURL=maps/style.css.map */
 /* my css */
@@ -884,7 +889,7 @@ blockquote {
   position: absolute;
   right: 0px;
   top: 0px;
-  background: red;
+  background: #e13e71;
   color: #fff;
   width: 380px;
   height: 100%;
@@ -910,10 +915,11 @@ blockquote {
 .desc-img p{
   font-size: 14px;
   padding-top: 10px !important;
+  color: #fff;
 }
 
 .info-head{
-  color: #fdd5f6;
+  color: #ef81a3;
   font-size: 24px ;
   font-weight: 600;
   text-align: left !important;
@@ -934,6 +940,11 @@ blockquote {
   margin: 10px 15px;
   line-height: 18px;
 }
+
+.info-block strong{
+  color: #fff;
+}
+
 .watch-btn{
   padding-top: 23px;
 }
@@ -975,6 +986,19 @@ blockquote {
   .carousel-item {
   height: 140px;
   }
+
+  .nav-size{
+    max-width: 70%;
+  }
+  
+  .pageleter-space{
+    letter-spacing: 20px;
+  }
+
+  .con-word-space{
+    word-spacing: 5px;
+  }
+
 }
 
 @media screen and (min-width: 479px) and (max-width: 640px) {
@@ -1013,7 +1037,7 @@ blockquote {
   text-align: center;
   font-size: 16px;
     font-weight: bold;
-    background: #f08411;
+    background: #e13e71;
     color: #fff;
     margin-top: 20px;
 }
@@ -1035,7 +1059,7 @@ blockquote {
 /*header-box*/
 
 .pull-left{
-  background: #ff7b39 !important;
+  background: #e13e71 !important;
   font-size: 18px;
     font-family: Montserrat-Regular;
     font-weight: 400 ;
@@ -1219,7 +1243,7 @@ blockquote {
 }
 
 .movie-language{
-    background: #1CEE3E;
+    background: #e13e71;
     border-radius: 3px;
     color: #222;
     font-size: 11px;
@@ -1270,12 +1294,12 @@ blockquote {
     font-weight: 900;
     padding: 0 0 6px;
     line-height: normal;
-    color: #f3a0a8 !important;
+    color: #ef81a3 !important;
 }
 
 .movie-top{
     padding: 6px 20px;
-    background: rebeccapurple;
+    background: #ad9ea3;
     color: #333;
     font-weight: 700;
     margin: 0 -13px 12px;
@@ -1290,7 +1314,7 @@ blockquote {
 
 .movie-imdb{
   padding: 1px 7px !important;
-  background: darkred;
+  background: #e13e71;
   margin-right: 19px !important;
 }
 
@@ -1305,7 +1329,7 @@ blockquote {
 
 .block a{
     text-decoration: none;
-    color: aquamarine;
+    color: #e13e71;
 }
 
 .movie-bottom{
@@ -1313,8 +1337,8 @@ blockquote {
 }
 
 .btn-successful{
-    background: #2ca91f;
-    border-bottom: 3px solid #f14d5d !important;
+    background: #e13e71;
+    border-bottom: 3px solid #ef81a3 !important;
     border: none;
     color: #fff!important;
 }
@@ -1376,18 +1400,26 @@ blockquote {
 }
 
 @media screen and (max-width: 479px){
-.container .card {
+
+  .container .card {
     height: 250px;
     margin: 1.5%;
     width: 47%;
   }
-}
 
-@media screen and (max-width: 479px){
-.movie-title {
+  .movie-title {
     font-size: 12px;
     font-weight: 600;
   }
+
+  .movie-content p{
+    display: none;
+  }
+
+  .s1-button{
+    display: none;
+  }
+
 }
 
 @media screen and (min-width: 479px) and (max-width: 640px) {
@@ -1396,13 +1428,20 @@ blockquote {
     margin: 1.5%;
     width: 30%;
   }
-}
 
-@media screen and (min-width: 479px) and (max-width: 640px) {
   .movie-title {
     font-size: 16px;
     font-weight: 800 !important;
   }
+
+  .movie-content p{
+    display: none;
+  }
+
+  .s1-button{
+    display: none;
+  }
+
 }
 
 @media screen and (min-width: 640px) and (max-width: 991px) {
@@ -1411,13 +1450,20 @@ blockquote {
     margin: 1.5%;
     width: 22%;
   }
-}
 
-@media screen and (min-width: 640px) and (max-width: 991px) {
   .movie-title {
     font-size: 16px;
     font-weight: 800 !important;
   }
+
+  .movie-content p{
+    display: none;
+  }
+
+  .s1-button{
+    display: none;
+  }
+
 }
 
 @media screen and (min-width: 991px) and (max-width: 1080px) {
@@ -1426,29 +1472,36 @@ blockquote {
     margin: 1.5%;
     width: 22%;
   }
-}
 
-@media screen and (min-width: 991px) and (max-width: 1080px) {
   .movie-title {
     font-size: 18px;
     font-weight: 800 !important;
   }
+
+  .movie-content p{
+    display: none;
+  }
+
+  .s1-button{
+    display: none;
+  }
+    
 }
 
 /*For Delete The Hover*/
 
-@media screen and (max-width: 1024px){
+/* @media screen and (max-width: 1024px){
   .movie-bootstrap {
-    display: none !important;
-    opacity: 0px;
-  }
-}
+    /* display: none !important; */
+    /* opacity: 0px; */
+  /* } */
+/* } */ 
 
-@media screen and (max-width: 1024px){
+/* @media screen and (max-width: 1024px){
   .container .card span {
     display: none !important;
   }
-}
+} */
 
 /*For Page Number*/
 
@@ -1614,7 +1667,7 @@ blockquote {
 /*Project Page CSS*/
 
 .pp-page-container{
-    width: 66%;
+    width: 85%;
     margin: auto;
 }
 
@@ -1719,7 +1772,7 @@ p{
 }
 
 .left-side a{
-    color: #ef7305;
+    color: #e13e71;
 }
 
 .left-side p{
@@ -1756,7 +1809,7 @@ p{
     display: inline-block;
     font-size: 11px;
     text-transform: uppercase;
-    background: #f9a302;
+    background: #e13e71;
     color: #fff;
     margin-left: 2px;
     margin-top: -2px;
@@ -1812,7 +1865,7 @@ p{
 }
 
 .tab a{
-    background: #f3702f!important;
+    background: #e13e71!important;
     color: #fff;
     border: 0;
     margin-right: 3px;
@@ -1893,7 +1946,7 @@ p{
     color: black;
 }
 .download-link{
-    background: #f3702f;
+    background: #e13e71;
     border-radius: 4px;
 }
 
@@ -1905,8 +1958,8 @@ p{
 /*Movie List*/
 
 .pp-container .pp-card{
-  width: 21%;
-  height: 375px;
+  width: 17%;
+  height: 360px;
 }
 
 @media (min-width: 1024px) and  (max-width: 1500px){

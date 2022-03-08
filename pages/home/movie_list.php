@@ -17,7 +17,8 @@
           $lan = $movies[$i]['language'];
           $myArray = explode(',', $lan);
           ?>
-            <div class="card">
+            <div class="card movie-<?php echo $movies[$i]['id']; ?>" id="movie-<?php echo $movies[$i]['id']; ?>">
+            
           <span></span>
           <div class="imgbx">
             <a href="#" class="movie-language"><?php echo ucfirst($myArray[0]); ?></a>
@@ -26,7 +27,7 @@
               <h2 class="movie-title"><?php echo $movies[$i]['title']; ?></h2>
             </a>
           </div>
-          <div class="content">
+          <div class="content show-<?php echo $movies[$i]['id']; ?>" id="show-<?php echo $movies[$i]['id']; ?>">
             <div>
               <div class="movie movie-bootstrap">
                 <div class="movie-content">
@@ -66,4 +67,23 @@
       </div>
     </div>
 
-    
+    <script>
+      $('.card').click(function() {
+        if ($(window).width() < 1080){
+
+          var myArray = this.id.split("-");
+
+          // remove other visible detail
+
+          $(".container .card span").css("width", "unset");
+          $(".container .card span").css("height", "unset");
+          $(".container .card .content div").css("visibility", "hidden");
+
+          // show visible detail
+          $("#show-"+myArray[1]+" div").css("visibility", "visible");
+          $("#movie-"+myArray[1]+" span").css("width", "1000px");
+          $("#movie-"+myArray[1]+" span").css("height", "1000px");
+        }
+      });
+
+    </script>

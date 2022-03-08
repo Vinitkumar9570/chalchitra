@@ -32,7 +32,7 @@
 				<div class="right-side">
 					<p>
 						<strong>Duration:&nbsp</strong>
-						<span style="color: #ef7305;"><?php echo $duration_minutes; ?> min</span>
+						<span style="color: #e13e71;"><?php echo $duration_minutes; ?> min</span>
 					</p>
 					<p>
 						<strong>Language:&nbsp</strong>
@@ -40,7 +40,7 @@
 					</p>
 					<p>
 						<strong>Release:&nbsp</strong>
-						<span style="color: #ef7305;"><?php echo $release_year; ?></span>
+						<span style="color: #e13e71;"><?php echo $release_year; ?></span>
 					</p>
 					<p>
 						<strong>IMDb:&nbsp</strong>

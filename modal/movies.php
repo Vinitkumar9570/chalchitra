@@ -2,6 +2,21 @@
 
 
 function getMovies($con){
+	// limit
+	$cur_page = 1;
+	if (isset($_GET['page'])) {
+		$cur_page = $_GET['page'];
+	}
+	$per_page_result = getenv('PER_PAGE_RECORD');
+	$results = mysqli_query($con, "SELECT count(*) as total
+	FROM movie_details ");
+	$row = mysqli_fetch_all ($results, MYSQLI_ASSOC);
+	$total_records = $row[0]['total'];
+	$total_pages = ceil($total_records / $per_page_result);
+	$end_limit = $cur_page* $per_page_result;
+	$start_limit = $end_limit - $per_page_result;
+
+	
 	$where = "";
 	if (isset($_GET['cid'])) {
 		$where = " where c.id = ".$_GET['cid'];
@@ -10,11 +25,43 @@ function getMovies($con){
 	m.duration_minutes,m.origin,m.imdb_rating,m.release_year,m.genre,m.link,m.language,m.director,
 	m.actors,m.is_active,c.category
 	FROM movie_details as m
-	LEFT OUTER Join categories as c on (m.category_id = c.id)".$where);
-	// $row = mysqli_fetch_array($results) ;
+	LEFT OUTER Join categories as c on (m.category_id = c.id)".$where. " LIMIT ".$start_limit." , ".$per_page_result);
+	
 	$row = mysqli_fetch_all ($results, MYSQLI_ASSOC);
 	return $row;
 }
+
+
+function getPages($con){
+	$pages = array();
+	$per_page_result = getenv('PER_PAGE_RECORD');
+	$cur_page = 1;
+	if (isset($_GET['page'])) {
+		$cur_page = $_GET['page'];
+	}
+	$results = mysqli_query($con, "SELECT count(*) as total
+	FROM movie_details ");
+	
+	$row = mysqli_fetch_all ($results, MYSQLI_ASSOC);
+
+
+	$total_pages = ceil($row[0]['total'] / $per_page_result);
+	$pages['total_records'] = $row[0]['total'];
+	$pages['current_page'] = $cur_page;
+	$pages['total_pages'] = $total_pages;
+
+	$pages['prev'] = "";
+	if($cur_page > 1 && $total_pages >= $cur_page){
+		$pages['prev'] = $cur_page -1;
+	}
+	$pages['next'] = "";
+	if($cur_page >= 1 && $total_pages > $cur_page){
+		$pages['next'] = $cur_page +1;
+	}
+
+	return $pages;
+}
+
 
 function getCategory($con){
 	$results = mysqli_query($con, "SELECT * FROM categories");

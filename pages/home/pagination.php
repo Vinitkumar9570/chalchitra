@@ -1,22 +1,33 @@
 <!-- Page Number -->
-    <div class="row page-container" style="margin-top: 10px; margin-bottom: 10px;">
+<?php $pages = getPages($db); ?>
+    <div class="row page-container con-word-space" style="margin-top: 10px; margin-bottom: 10px;">
       <div class="col-12">
         <nav>
           <ul class="pagination justify-content-center align-items-center">
-            <li class="page-item">
-              <span class="page-link">&laquo; Previous</span>
+          <?php if($pages['prev']){ ?>
+            <a class="page-link" href="<?php echo getenv('BASE_URL');?>?page=<?php echo $pages['prev']; ?>">
+              <li class="page-item">
+                <span class="page-link">&laquo; Previous</span>
+              </li>
+            </a>
+          <?php } ?>
+            <?php for($i = 1; $i<= $pages['total_pages']; $i++){ ?>
+
+            <li class="page-item pageleter-space">
+              <a class="page-link <?php if($pages['current_page'] == $i) echo "active"; ?>" 
+                href="<?php echo getenv('BASE_URL');?>?page=<?php echo $i; ?>">
+                <?php echo $i; ?>
+              </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">01</a></li>
-            <li class="page-item active">
-              <span class="page-link">02</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">03</a></li>
-            <li class="page-item"><a class="page-link" href="#">04</a></li>
-            <li class="page-item"><a class="page-link" href="#">05</a></li>
-            <li class="page-item"><a class="page-link" href="#">06</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next &raquo;</a>
-            </li>
+
+            <?php } ?>
+            <?php if($pages['next']){ ?>
+              <a class="page-link" href="<?php echo getenv('BASE_URL');?>?page=<?php echo $pages['next']; ?>">
+                <li class="page-item">
+                  <span class="page-link">&laquo; Next</span>
+                </li>
+              </a>
+            <?php } ?>
           </ul>
         </nav>
       </div>

@@ -25,9 +25,9 @@
                   <div class="slide-caption-info">
                     <div class="info-block">
                       <strong>Genre:</strong>
-                      <a href="#" rel="category-tag" style="color: #ff712a;">&nbsp;</a>
-                      <a href="#" rel="category-tag" style="color: #ff712a;">&nbsp;</a>
-                      <a href="#" rel="category-tag" style="color: #ff712a;"><?php echo $banners[$i]['genre']; ?></a>
+                      <a href="#" rel="category-tag" style="color: #ef81a3;">&nbsp;</a>
+                      <a href="#" rel="category-tag" style="color: #ef81a3;">&nbsp;</a>
+                      <a href="#" rel="category-tag" style="color: #ef81a3;"><?php echo $banners[$i]['genre']; ?></a>
                     </div>
                     <div class="info-block">
                       <strong>Duration:&nbsp;&nbsp;</strong>

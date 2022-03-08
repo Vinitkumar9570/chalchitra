@@ -21,7 +21,7 @@ PRIMARY KEY (`id`)
 
 
 
-//Costumer Table//
+//Costumer Or Users Table//
 
 CREATE TABLE users_login (
 id bigint(11) NOT NULL AUTO_INCREMENT,
@@ -30,6 +30,41 @@ name varchar(250) NOT NULL,
 password varchar(50) NOT NULL,
 `is_active` tinyint(1) DEFAULT NULL,
 roll enum('admin','costumer') NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+//Banners Table//
+
+CREATE TABLE banners (
+id bigint(11) NOT NULL AUTO_INCREMENT,
+movies_id int(11) NOT NULL,
+link varchar(250) NOT NULL,
+page_type enum('home','product') NOT NULL,
+`is_active` tinyint(1) DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+//Categories Table//
+
+CREATE TABLE categories (
+id bigint(11) NOT NULL AUTO_INCREMENT,
+category varchar(100) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+//Videos Table//
+
+CREATE TABLE videos (
+id bigint(11) NOT NULL AUTO_INCREMENT,
+name varchar(250) NOT NULL,
+link varchar(250) NOT NULL,
+file_type varchar(100) NOT NULL,
+duration int(11) NULL,
+`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 

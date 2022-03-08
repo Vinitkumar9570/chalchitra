@@ -23,8 +23,8 @@
       
 
         <nav class="navbar navbar-expand-lg navbar-light page-container">
-          <a class="navbar-brand" href="./index.php"><img class="img-fluid logo-size" src="././images/logo/logo.png" alt="chalchitra"></a>
-          <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+          <a class="navbar-brand nav-size" href="./index.php"><img class="img-fluid logo-size" src="././images/logo/logo.png" alt="chalchitra"></a>
+          <button class="navbar-toggler border-0 " type="button" data-toggle="collapse" data-target="#navogation"
             aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
