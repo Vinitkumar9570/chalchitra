@@ -13,6 +13,7 @@ link varchar(250) NOT NULL,
 director varchar(255) NOT NULL,
 actors varchar(500) NOT NULL, 
 image_url varchar(250) NOT NULL,
+`is_series` tinyint(1) DEFAULT NULL,
 `is_active` tinyint(1) DEFAULT NULL,
 `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -59,6 +60,8 @@ PRIMARY KEY (`id`)
 
 CREATE TABLE videos (
 id bigint(11) NOT NULL AUTO_INCREMENT,
+seasons VARCHAR(30) NULL,
+episode VARCHAR(30) NULL,
 name varchar(250) NOT NULL,
 link varchar(250) NOT NULL,
 file_type varchar(100) NOT NULL,

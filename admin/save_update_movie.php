@@ -18,6 +18,7 @@
   $actors ="";
   $image_url = "";
   $banner_url = "";
+  $is_series = "";
   $is_active = "";
 
   
@@ -41,6 +42,7 @@
     $actors = $row['actors'];
     $image_url = $row['image_url'];
     $banner_url = $row['banner_url'];
+    $is_series = (int)$row['is_series'];
     $is_active = (int)$row['is_active'];
 
   }
@@ -69,6 +71,7 @@
           exit();
       }
     }
+
     // banner upload
     $banner_target_dir = "../uploads/banners/";
     if($_FILES["bannerUpload"]["name"]){
@@ -112,13 +115,14 @@
       $banner_url = $banner_url;
     }
     
+    $is_series = (int)$_POST['is_series'];
     $is_active = (int)$_POST['is_active'];
   
 
     $sql="UPDATE `movie_details` set id=$id, name='$name', title='$title', description='$description',
      duration_minutes='$duration_minutes', origin='$origin', imdb_rating='$imdb_rating',
       release_year='$release_year', genre='$genre', link='$link', language='$language', category_id='$category_id', 
-      director='$director', actors='$actors', image_url='$image_url',banner_url='$banner_url', is_active='$is_active' where id=$id";
+      director='$director', actors='$actors', image_url='$image_url', banner_url='$banner_url', is_series='$is_series', is_active='$is_active' where id=$id";
 
     $result=mysqli_query($con,$sql);
     if($result){
@@ -173,10 +177,11 @@
     $actors = $_POST['actors'];
     $image_url = substr($target_file, 3);
     $banner_url = substr($banner_target_dir, 3);
+    $is_series = (int)$_POST['is_series'];
     $is_active = (int)$_POST['is_active'];
   
 
-    $sql="insert into `movie_details` (name,title,description,duration_minutes,origin,imdb_rating,release_year,genre,link,language,category_id,director,actors,image_url,banner_url,is_active) values('$name','$title','$description',$duration_minutes,'$origin',$imdb_rating,$release_year,'$genre','$link','$language','$category_id','$director','$actors','$image_url','$banner_url',$is_active)";
+    $sql="insert into `movie_details` (name,title,description,duration_minutes,origin,imdb_rating,release_year,genre,link,language,category_id,director,actors,image_url,banner_url,is_series,is_active) values('$name','$title','$description',$duration_minutes,'$origin',$imdb_rating,$release_year,'$genre','$link','$language','$category_id','$director','$actors','$image_url','$banner_url','$is_series',$is_active)";
  
 
     if ($con->query($sql) === TRUE) {
@@ -202,7 +207,8 @@
     <div class="container my-5">
       <a href="index.php" class="text-light"><button class="btn btn-primary my-3">Back Home</button></a>
       <form method="post" enctype="multipart/form-data" class="form-style">
-        <div class="form-group col-md-8">
+        
+      <div class="form-group col-md-8">
           <label>Name</label>
           <input type="text" class="form-control" placeholder="Enter your name" name="name" autocomplete="off" value="<?php echo $name; ?>">
         </div>
@@ -276,7 +282,8 @@
         <div class="form-group col-md-8">
           <label>Banner</label>
           <input type="file" name="bannerUpload" id="bannerUpload">
-          <?php if ($image_url != "") { ?>
+          
+          <?php if ($banner_url != "") { ?>
             <img src="../<?php echo $banner_url ?>" alt="'.$banner_url.'" height="auto" width="250px">
           <?php } ?>
           
@@ -298,30 +305,50 @@
               </select>
             </div><br>
 
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-8 text-center">
+          <label>Is Series</label>
+          <input type="checkbox"  id='is_series_checkbox' name="is_series" value="<?php echo $is_series; ?>" <?php if($is_series == 1) echo 'checked' ?> style="height:35px;width: 35px;">
+        </div>
+
+        <div class="form-group col-md-8 text-center">
           <label>Is Active</label>
-          <input type='radio' id='radio_1' class="form-control" name="is_active"  autocomplete="off" value="<?php echo $is_active; ?>" <?php if($is_active == 1) echo 'checked' ?>> 
-          <script type="text/javascript">
-            $('input[type=radio]').click(function(){
-
-
-                if (this.previous) {
-                    this.checked = false;
-                }
-                this.previous = this.checked;
-
-                if ($(this).prop('checked')==true){ 
-                    $('input[type=radio]').val('1');
-                }else{
-                  $('input[type=radio]').val('0');
-                }
-
-            });
-          </script>
+          <input type="checkbox"  id='is_active_checkbox' name="is_active" value="<?php echo $is_active; ?>" <?php if($is_active == 1) echo 'checked' ?> style="height:35px;width: 35px;" >
         </div>
 
         <button type="submit" class="btn btn-primary col-md-8" name="<?php if(!isset($_GET['updateid'])) echo 'submit'; else echo 'update'; ?>">Submit</button>
       </form>
 
     </div>
+    <script>
+      $('#is_series_checkbox').click(function(){
+        if (this.previous) {
+            this.checked = false;
+        }
+        this.previous = this.checked;
+
+        if ($(this).prop('checked')==true){ 
+            $('#is_series_checkbox').val('1');
+        }else{
+          $('#is_series_checkbox').val('0');
+        }
+
+      });
+
+      $('#is_active_checkbox').click(function(){
+
+
+        if (this.previous) {
+            this.checked = false;
+            console.log("");
+        }
+        this.previous = this.checked;
+
+        if ($(this).prop('checked')==true){ 
+            $('#is_active_checkbox').val('1');
+        }else{
+          $('#is_active_checkbox').val('0');
+        }
+
+      });
+    </script>
 <?php include 'pages/common/foot.php'; ?>

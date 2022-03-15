@@ -5,6 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>crud operation</title>
 
+	 <!--Favicon-->
+	 <link rel="shortcut icon" href="././static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="././static/images/favicon.ico" type="image/x-icon">
+
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="static/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="static/bootstrap/bootstrap.bundle.min.js">
